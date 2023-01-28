@@ -1,0 +1,47 @@
+Small application to learn Webhook
+
+Build image of <abcschool> and <studentdata> service in local system and run docker compose
+
+docker build -t <image_name> <directory of abcschool>
+docker build -t <image_name> <directory of studentdata>
+docker compose up
+
+
+Add school Detail
+
+URL: http://localhost:9090/addWebhookEvent
+
+Ex:
+{
+    "schoolName": "abc School",
+    "schoolId": 1,
+    "web":{
+        "eventname": "addStudent",
+        "endpoint": "http://abcschool:9091/webhook/studentAdded"
+    }
+}
+
+Expected Output: 
+[{"schoolName":"abc School","schoolId":1,"web":{"eventname":"addStudent","endpoint":"http://abcschool:9091/webhook/studentAdded"}}]
+
+
+Add student Detail
+
+URL: http://localhost:9090/addWebhookEvent
+
+Ex:
+{
+    "name": "sanjeet Kumar",
+    "age": 23,
+    "schoolId": 1
+}
+
+Expected Output:
+
+The response is 
+ webhook data received {
+    "name": "sanjeet Kumar",
+    "age": 23,
+    "schoolId": 1
+} !  ! 
+ response code is 200 [{"name":"sanjeet Kumar","age":23,"schoolId":1}]
